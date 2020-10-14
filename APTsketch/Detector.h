@@ -5,6 +5,7 @@
 #include "BOBHash32.h"
 #include "cell.h"
 #include <cmath>
+#include <cstdint>
 
 using namespace std;
 

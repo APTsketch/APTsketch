@@ -2,6 +2,7 @@
 #define _CELL_H_
 
 #include <algorithm>
+#include <cstdint>
 
 using namespace std;
 
