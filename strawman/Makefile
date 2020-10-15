@@ -1,5 +1,5 @@
 GCC = g++
-CFLAGS = -O2 -w -std=c++14 
+CFLAGS = -O2 -w -std=c++11 
 SSEFLAGS =   -march=native
 FILES = demo.out 
 
