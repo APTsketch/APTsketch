@@ -10,7 +10,6 @@
 #include "parser.h"
 
 #define LSTRING 100
-#define SPARSIFYLEVEL 200
 using namespace std;
 
 struct FlowRecord
@@ -29,35 +28,36 @@ struct FlowRecord
 int main(int argc, char *argv[])
 {
 
-	if (argc != 6)
+	if (argc != 5)
 	{
 		printf("Wrong Input!\n");
 		return 0;
 	}
 
-	double LT = (double)atoi(argv[1]) * 1000000 / SPARSIFYLEVEL;
-	double RT = (double)atoi(argv[2]) * 1000000 / SPARSIFYLEVEL;
-	double minDuration = (double)atoi(argv[3]) *1000000 / SPARSIFYLEVEL;
+	/* File to be marked */
+	char normalFlowDir[LSTRING] = "../data/mix/2to4_10000000_250_1000.dat";
+	
+	/* Ground Truth */
+	char attackListDir[LSTRING] = "";
+	sprintf(attackListDir, "../data/mix/testList_2to4_10000000_250_1000.dat");
+
+	double LT = (double)atoi(argv[1]);
+	double RT = (double)atoi(argv[2]);
+	double minDuration = (double)atoi(argv[3]);
 	double dataLen = 80000000;
-	uint64_t minBatchInterval = atoi(argv[4]) * 1000000 / SPARSIFYLEVEL;
-	int maxBatchSize = atoi(argv[5]);
+	uint64_t minBatchInterval;
+	int maxBatchSize = atoi(argv[4]);
 
 	//double LTlist[6] = { 1000000, 2000000, 4000000, 8000000, 16000000, 32000000 };
 	//double RTlist[6] = { 2000000, 4000000, 8000000, 16000000, 32000000, 64000000 };
 	//double minDurationlist[6] = { 30000000, 60000000, 120000000, 240000000, 400000000, 1250000000 };
 
-	/* File to be marked */
-	char normalFlowDir[LSTRING] = "../data/mix/sim2.7_2to4_1000.dat";
 	FILE *fnrm;
 	Packet *normalPacket = new Packet;
 	map<uint64_t, FlowRecord> FlowRecordMap;
 	map<uint64_t, FlowRecord>::iterator FlowRecordMapIt;
 	map<uint64_t, Packet> APTMap;
 	map<uint64_t, Packet>::iterator APTMapIt;
-
-	/* Ground Truth */
-	char attackListDir[LSTRING] = "";
-	sprintf(attackListDir, "../data/mix/testList_sim2.7_2to4_1000.dat");
 
 	minBatchInterval = (uint64_t)(LT / 5);
 	fnrm = fopen(normalFlowDir, "rb");

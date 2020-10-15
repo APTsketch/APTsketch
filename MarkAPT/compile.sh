@@ -2,4 +2,4 @@
 make clean
 make
 
-./mark.out 40 80 3000 1 5
+./mark.out 2000000 4000000 60000000 10

@@ -81,6 +81,40 @@ The output file is in *data/mix/*, whose name is *yourComment*.dat
 
 ## Mark ground truth
 
+#### Move to MarkAPT dictionary
+
+```shell
+cd MarkAPT
+```
+
+#### Modify the MarkAPT.cpp
+
+The following parameters can be adjusted.
+
+* normalFlowDir, which is the position of simulated/mixed dataset
+* attackListDir, which is the position of output ground truth
+
+#### Edit the compile.sh
+
+The usage of mark.out is:
+
+```shell
+./mark.out LT RT minDuration maxBatchSize
+```
+
+where
+
+* LT represents $$\mathcal{T}_l$$
+* RT represents $$\mathcal{T}_r$$
+* minDuration represents $$\mathcal{T}_d$$
+* maxBatchSize represents $$\mathcal{T}_s$$
+
+#### Mark ground truth
+
+```shell
+./compile.sh
+```
+
 ## APT Sketch
 
 #### Move to APT Sketch dictionary
