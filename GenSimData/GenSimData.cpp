@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
 
   	int flowPoolSize = flowPool.size();
   	char bgDir[LSTRING] = "";
-	sprintf(bgDir, "./normal/simbg_%f_%d_%d_%d_%d.dat", alpha_zipf, n_zipf, flowNum, intv, pktNum);
+	sprintf(bgDir, "../data/normal/simbg_%f_%d_%d_%d_%d.dat", alpha_zipf, n_zipf, flowNum, intv, pktNum);
 
   	FILE *fnrm = fopen(bgDir, "wb");
   	for (int i = 0; i < pktNum; ++i)
