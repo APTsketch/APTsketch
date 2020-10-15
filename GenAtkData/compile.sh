@@ -2,4 +2,4 @@
 make clean
 make
 
-./sim.out 1000 20000000
+./sim.out 100 20000000

@@ -24,6 +24,11 @@ int main(int argc, char *argv[])
 		return 0;
 	}
 
+	/* Attack File */
+	char attackFlowDir[INSERTNUM][LSTRING] = {
+		"../data/attack/Taidoor2.pcap"
+	};
+
 	int variantNum = atoi(argv[1]);
 	uint64_t maxOffset = (uint64_t)atoi(argv[2]);
 	int cnt = 0;
@@ -33,11 +38,6 @@ int main(int argc, char *argv[])
 	char medFlowDir[LSTRING] = "../data/mix/intermediate.dat";
 	FILE *fmed = fopen(medFlowDir, "wb");
 	fclose(fmed);
-
-	/* Attack File */
-	char attackFlowDir[INSERTNUM][LSTRING] = {
-		"../data/attack/Taidoor2.pcap"
-	};	
 
 	/* Output File */
 	char mixFlowDir[LSTRING] = "";
