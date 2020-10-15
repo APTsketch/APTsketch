@@ -15,33 +15,32 @@
 #define ID(attackPacket) (attackPacket->id)
 using namespace std;
 
-const char comment[LSTRING] = "sim2.7_2to4_1000";
+const char comment[LSTRING] = "sim2.7_2to4_100";
 
 int main(int argc, char *argv[])
 {
-	if (argc != 3) {
+	if (argc != 2) {
 		printf("Wrong Input!\n");
 		return 0;
 	}
-	int datalen = atoi(argv[1]);
-	uint64_t sparsifyLevel = atoi(argv[2]);
-	int cnt = 0;
-	srand((unsigned)time(NULL));
 
-	/*正常流文件*/	
+	/* Background Flows */	
 	char normalFlowDir[LSTRING] = "../data/normal/simbg_2.700000_1000_300000_500_10000000.dat";
 	FILE *fnrm = fopen(normalFlowDir, "rb");
 
-	/*中间文件*/
+	/* Attack Flows */
+	char attackFlowDir[INSERTNUM][LSTRING] = {
+		"../data/mix/atk_2to4_100.dat"
+	};
+
+	uint64_t sparsifyLevel = atoi(argv[1]);
+	srand((unsigned)time(NULL));
+	
+	/* Median File */
 	char medFlowDir[LSTRING] = "../data/mix/intermediate.dat";
 	FILE *fmed = fopen(medFlowDir, "wb");
 
-	/*攻击流文件*/
-	char attackFlowDir[INSERTNUM][LSTRING] = {
-		"../data/mix/atk_2to4_1000.dat"
-	};	
-
-	/*输出文件*/
+	/* Output files */
 	char mixFlowDir[LSTRING] = "";
 	sprintf(mixFlowDir, "../data/mix/%s.dat", comment);
 
@@ -49,16 +48,13 @@ int main(int argc, char *argv[])
 	Packet *attackPacket = new Packet;
 	printf("%s\n", comment);
 
-	/*标定正常流开始时间*/
-
 	printf("begin to copy...\n");
 	ExtractFormattedPacket(fnrm, normalPacket);
 	uint64_t normalStartUs = normalPacket->us;
 	normalPacket->us = 0;
 	
-	
 	WriteFormattedPacket(fmed, normalPacket);
-	for (int i = 1; i ; ++i) //datalen
+	while (true) 
 	{
 		if (!ExtractFormattedPacket(fnrm, normalPacket))
 			break;

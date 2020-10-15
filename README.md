@@ -45,7 +45,39 @@ The output file is in *data/mix/*, whose name is *yourComment*_*insertedNum*.dat
 
 ### 3. generate simulated/mixed datasets
 
+#### Move to GenMixData dictionary
 
+```shell
+cd GenMixData
+```
+
+#### Modify the GenData.cpp
+
+The following parameters can be adjusted.
+
+* comment, which identifies the output file
+* normalFlowDir, which is the position of background flow
+* attackFlowDir, which is the position of APT flow
+
+#### Edit the compile.sh
+
+The usage of sim.out is:
+
+```shell
+./sim.out dilutionFactor
+```
+
+For simulated datasets, the dilutionFactor should be 1.
+
+For mixed datasets, the dilutionFactor can be adjusted.
+
+#### Generate datasets
+
+```shell
+./compile.sh
+```
+
+The output file is in *data/mix/*, whose name is *yourComment*.dat
 
 ## Mark ground truth
 
